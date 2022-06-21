@@ -1,34 +1,39 @@
 import React from "react";
 import { Chart } from "react-google-charts";
 
-export function LineChart({ arr }) {
-  const tempData = arr.map((val, i) => [i, parseInt(val)]);
+export function LineChart({ arr1, arr2 }) {
+  console.log({ arr1, arr2 });
 
-  const data = [["Day", "Average hours of daylight"], ...tempData];
+  const days = [
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+    "Sunday",
+  ];
+
+  const data = [
+    ["Day", "Data Consumption (GB)", "Prediction (GB)"],
+    [-7, null, 0],
+    ...days.map((day, i) => [i - 6, parseFloat(arr1[i]), null]),
+    [1, arr1[6], null],
+    ...days.map((day, i) => [i + 1, null, parseFloat(arr2[i])]),
+    [7, 0, null],
+    [8, 0, null],
+  ];
+
+  console.log({ data, arr1, arr2 });
 
   const options = {
-    chart: {
-      title: "Title",
-    },
-    width: 900,
-    height: 500,
-    series: {
-      // Gives each series an axis name that matches the Y-axis below.
-      0: { axis: "Data" },
-      1: { axis: "Day" },
-    },
-    axes: {
-      // Adds labels to each axis; they don't have to match the axis names.
-      y: {
-        Data: { label: "Data" },
-        Day: { label: "Day" },
-      },
-    },
+    title: "Cloud Storage Consumption",
+    curveType: "function",
+    legend: { position: "bottom" },
   };
-
   return (
     <Chart
-      chartType="Line"
+      chartType="LineChart"
       width="100%"
       height="400px"
       data={data}

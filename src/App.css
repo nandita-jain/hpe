@@ -3,6 +3,7 @@
   background-color: #282c34;
   min-height: 100vh;
   color: white;
+  padding: 3rem;
 }
 
 .graph {
@@ -11,4 +12,9 @@
   margin: auto;
   background: red;
   width: fit-content;
+}
+
+.heading {
+  font-size: 3rem;
+  margin-bottom: 2rem;
 }

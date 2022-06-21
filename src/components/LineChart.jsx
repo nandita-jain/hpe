@@ -18,7 +18,9 @@ export function LineChart({ arr1, arr2 }) {
     ["Day", "Data Consumption (GB)", "Prediction (GB)"],
     [-7, null, 0],
     ...days.map((day, i) => [i - 6, parseFloat(arr1[i]), null]),
-    ...days.map((day, i) => [i, null, parseFloat(arr2[i])]),
+
+    [0, null, parseFloat(arr1[6])],
+    ...days.map((day, i) => [i + 1, null, parseFloat(arr2[i])]),
     [7, 0, null],
     [8, 0, null],
   ];

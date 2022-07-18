@@ -16,13 +16,18 @@ function App() {
     Sunday: 86,
   });
 
+  const [model, setModel] = useState("MLP"); // MLP | LSTM
+
   const fetchData = async () => {
     console.log({ isLoading });
     setIsLoading(true);
     try {
-      const res = await axios.post("https://hpecty.azurewebsites.net/predict", {
-        input_data: Object.values(inputGbNums).map((val) => parseFloat(val)),
-      });
+      const res = await axios.post(
+        `https://hpe-cty.azurewebsites.net/predict?model=${model}`,
+        {
+          input_data: Object.values(inputGbNums).map((val) => parseFloat(val)),
+        }
+      );
 
       setData(res.data.output);
 
@@ -50,7 +55,13 @@ function App() {
     <form className="App" onSubmit={onSubmit}>
       <div className="heading">Cloud Storage Prediction</div>
 
-      {data[0] ? (
+      <input
+        type="text"
+        placeholder="Model"
+        onChange={(e) => setModel(e.target.value)}
+      />
+
+      {data && data[0] ? (
         <LineChart
           arr1={[...data.filter((_, i) => i < 7)]}
           arr2={[...data.filter((_, i) => i >= 7)]}

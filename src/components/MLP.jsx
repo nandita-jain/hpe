@@ -54,7 +54,7 @@ function MLP() {
 
   return (
     <form onSubmit={onSubmit}>
-      <div className="heading">Cloud Storage Prediction</div>
+      
 
       <input
         type="text"

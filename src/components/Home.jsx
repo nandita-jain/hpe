@@ -8,18 +8,31 @@ const Home = () => {
   const [user, addUser] = useState(1);
   return (
     <>
+      <div className="heading">Cloud Storage Prediction</div>
       <Button
         className="ButtonSize"
         variant="contained"
+        style={{
+          backgroundColor: "green",
+          color: "white",
+          marginRight: "100px",
+          // marginLeft: "150px",
+          padding: "10px",
+        }}
         onClick={() => {
           setActiveMenu("MLP");
         }}
       >
-        MLP/LSTM
+        MLP / LSTM
       </Button>
       <Button
         padding="500px"
         variant="contained"
+        style={{
+          marginLeft: "100px",
+          //marginRight: "150px",
+          padding: "10px",
+        }}
         onClick={() => {
           setActiveMenu("ARIMA");
         }}

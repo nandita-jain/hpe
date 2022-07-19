@@ -53,12 +53,30 @@ const Arima = () => {
 
   return (
     <form onSubmit={fetchData}>
-      {!isLoading &&
+      {!isLoading && (
         <div>
-          <input type="file" name="file" onChange={changeHandler} />
-          <button type="submit">Submit</button>
+          <input
+            type="file"
+            name="file"
+            onChange={changeHandler}
+            style={{
+              margin: "50px",
+            }}
+          />
+          <button
+            type="submit"
+            style={{
+              backgroundColor: "green",
+              color: "white",
+              border: "none",
+
+              padding: "5px",
+            }}
+          >
+            Submit
+          </button>
         </div>
-      }
+      )}
       <Plot hide data={data} inputGbNums={inputGbNums} isLoading={isLoading} />
     </form>
   );

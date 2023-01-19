@@ -1,3 +1,4 @@
+import { fontFamily, fontStyle } from "@mui/system";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
@@ -7,6 +8,7 @@ import Plot from "./Plot";
 function MLP() {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [userType, setUserType] = useState(0);
   const [inputGbNums, setInputGbNums] = useState({
     Monday: 86,
     Tuesday: 88,
@@ -29,10 +31,13 @@ function MLP() {
           input_data: Object.values(inputGbNums).map((val) => parseFloat(val)),
         }
       );
+      console.log(inputGbNums);
+      // console.log(Object.keys(inputGbNums)[0].values(inputGbNums).map((val) => parseFloat(val)))
 
-      setData(res.data.output);
+      setData(res.data.output.forecast);
+      setUserType(res.data.output.user_type);
 
-      console.log({ data: res.data.output });
+      console.log({ data: res.data.output.forecast });
     } catch (error) {
       console.log({ error });
     } finally {
@@ -53,16 +58,21 @@ function MLP() {
   const nullArr = [0, 0, 0, 0, 0, 0, 0];
 
   return (
+    
     <form onSubmit={onSubmit}>
-      
-
       <input
         type="text"
         placeholder="Model"
         onChange={(e) => setModel(e.target.value)}
       />
+      
 
       <Plot data={data} inputGbNums={inputGbNums} isLoading={isLoading} />
+      <div style={{
+          color:"black",
+          fontWeight:"bold",
+          fontSize:"20px"
+        }} > User Type - {userType}</div>
     </form>
   );
 }

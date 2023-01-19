@@ -18,6 +18,7 @@ const Arima = () => {
     Sunday: 86,
   });
   const [selectedFile, setSelectedFile] = useState();
+
   const [isFilePicked, setIsFilePicked] = useState(false);
 
   const changeHandler = (event) => {
